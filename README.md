@@ -1,2 +1,2 @@
-#ManuType
-Typing website inspired by monkeytype. In production.
+ManuType
+A typing website inspired by Monkeytype. In production.
