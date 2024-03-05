@@ -1,8 +1,16 @@
 body {
     background-color: black;
+    color:white;
 }
 #title {
     text-align:center;
     font-family: monospace;
     color:white;
+}
+#time, #words, #settings {
+    width:100px;
+    height:100px;
+}
+#time {
+    margin-left:200px;
 }
