@@ -1,2 +1,1 @@
-ManuType
-A typing website inspired by Monkeytype. In production.
+ManuType is a typing website inspired by Monkeytype. In production.
