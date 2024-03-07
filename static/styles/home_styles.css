@@ -2,15 +2,39 @@ body {
     background-color: black;
     color:white;
 }
-#title {
+#title, #info {
     text-align:center;
     font-family: monospace;
     color:white;
+    margin-top:none;
+    font-size:50px;
+}
+#info {
+    font-size:25px;
+    margin: none;
+    padding:none;
 }
 #time, #words, #settings {
-    width:100px;
-    height:100px;
+    width:250px;
+    height:250px;
+    border-radius:40px;
+    font-family:monospace;
+    font-size:30px;
+    text-align: center;
+    
 }
 #time {
+    margin-top:75px;
+    margin-left:325px;
+    background-color: rgb(0, 92, 230);
+}
+#words, #settings {
     margin-left:200px;
+}
+#words {
+    background-color: rgb(180, 216, 245);
+}
+
+#settings {
+    background-color: rgb(47, 195, 240);
 }
