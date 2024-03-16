@@ -1,0 +1,16 @@
+body {
+    background-color: black;
+    color:white;
+}
+#count {
+    color:white;
+    text-align:center;
+    font-size:50px;
+    margin-top:200px;
+    font-family: monospace;
+}
+#word {
+    text-align:center;
+    font-size: 50px;
+    font-family: monospace;
+}
