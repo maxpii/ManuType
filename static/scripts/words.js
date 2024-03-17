@@ -1,4 +1,6 @@
 let word_array = []
+let word = document.getElementById("word");
+let counter = document.getElementById("count");
 
 function filter(data) {
     for (let i = 0; i < data.length; i++) {

@@ -14,3 +14,15 @@ body {
     font-size: 50px;
     font-family: monospace;
 }
+#text-div {
+    text-align: center;
+}
+#textbox {
+    background-color: black;
+    color: rgb(10, 255, 47);
+    caret-color: rgb(10, 255, 47);
+    margin: 0px;
+    border:none;
+    outline:none;
+    font-size:30px;
+}
