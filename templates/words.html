@@ -10,7 +10,7 @@
     <h1 id="count">25</h1>
     <h1 id="word">Hola</h1>
     <div id="text-div">
-    <input autofocus="autofocus" maxlength="15" id="textbox" type="text">
+    <input onkeypress="textHandler()"autofocus="autofocus" maxlength="15" id="textbox" type="text">
     </div>
 </body>
 <script src= "{{ url_for('static',filename='scripts/words.js') }}">
