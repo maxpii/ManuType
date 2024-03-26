@@ -15,8 +15,8 @@ body {
     padding:none;
 }
 #time, #words, #settings {
-    width:250px;
-    height:250px;
+    width:35vh;
+    height:35vh;
     border-radius:40px;
     font-family:monospace;
     font-size:30px;
@@ -25,7 +25,7 @@ body {
 }
 #time {
     margin-top:75px;
-    margin-left:150px;
+    margin-left:30vh;
     background-color: rgb(0, 92, 230);
 }
 #words, #settings {

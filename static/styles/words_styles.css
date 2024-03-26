@@ -26,3 +26,9 @@ body {
     outline:none;
     font-size:30px;
 }
+#seconds {
+    color:white;
+    text-align: center;
+    font-size: 40px;
+    font-family: monospace;
+}
