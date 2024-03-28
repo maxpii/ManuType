@@ -4,19 +4,19 @@ let counter = document.getElementById("count");
 let input = document.getElementById("textbox");
 let seconds = document.getElementById("seconds");
 let index = 0;
-let secondCounter = 0;
+let secondCounter = 1;
 let totalCharacters = 0;
 let correctCharacters = 0;
 const interval = setInterval(incrementSeconds,1000);
 let flag = false;
 
 function incrementSeconds() {
-  if (index >= word_array.length) {
+  if (index >= word_array.length - 1) {
     clearInterval(interval);
   }
   else {
     if (flag) {
-    seconds.innerHTML = secondCounter;
+   seconds.innerHTML = secondCounter;
     secondCounter++;
     }
   }
@@ -34,8 +34,9 @@ function textHandler() {
     var currentValue = input.value;
     input.style.color = "rgb(10, 255, 47)";
     input.style.caretColor = "rgb(10, 255, 47)";
-    if (index >= word_array.length) {
+    if (index >= word_array.length - 1) {
       word.innerHTML = "You finished 25 words";
+      counter.innerHTML = 0;
     }
     else if (currentValue.charAt(currentValue.length-1) === ' ') {
       input.value = "";
