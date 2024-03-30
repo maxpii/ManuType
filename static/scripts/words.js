@@ -37,10 +37,12 @@ function textHandler() {
     if (index >= word_array.length - 1) {
       word.innerHTML = "You finished 25 words";
       counter.innerHTML = 0;
+      sendData();
+      input.removeAttribute("onkeyup");
     }
     else if (currentValue.charAt(currentValue.length-1) === ' ') {
       input.value = "";
-      totalCharacters += currentValue.length; 
+      totalCharacters += word_array[index].length; 
       if (currentValue.substring(0,currentValue.length  - 1) === word_array[index]) {
         correctCharacters += currentValue.length;
       }
@@ -55,7 +57,20 @@ function textHandler() {
         input.style.caretColor = "red";
       } 
 }
-
+function sendData() { 
+  $.ajax({ 
+      url: '/process', 
+      type: 'POST', 
+      contentType: 'application/json', 
+      data: JSON.stringify({ 'Correct': correctCharacters, 
+      "Total":totalCharacters}), 
+      success: console.log("Success"), 
+      error: function(error) { 
+        console.log("You got an error");
+          console.log(error); 
+      } 
+  }); 
+} 
 
 fetch("https://random-word-api.herokuapp.com/word?number=25")
 .then(res => res.json())

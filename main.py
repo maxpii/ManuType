@@ -1,5 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template,request
 app = Flask(__name__)
+
+wordData = []
 
 @app.route("/")
 @app.route("/home")
@@ -17,5 +19,13 @@ def words_page():
 @app.route("/settings")
 def settings_page():
     return render_template("settings.html")
-    
+
+@app.route("/process",methods=['POST'])
+def process():
+    data = request.get_json()
+    wordData = data
+    return data
+
+
+
 app.run(debug=True)
