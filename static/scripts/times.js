@@ -4,6 +4,7 @@ let counter = document.getElementById("count");
 let input = document.getElementById("textbox");
 let seconds = document.getElementById("seconds");
 let index = 0;
+let allotedTime = 15;
 let secondCounter = 1;
 let totalCharacters = 0;
 let correctCharacters = 0;
@@ -11,7 +12,10 @@ const interval = setInterval(incrementSeconds,1000);
 let flag = false;
 
 function incrementSeconds() {
-  if (secondCounter > 30) {
+  if (secondCounter > allotedTime) {
+    sendData();
+    word.innerHTML = "Time's up";
+    input.removeAttribute("onkeyup");
     clearInterval(interval);
   }
   else {
@@ -37,9 +41,10 @@ function textHandler() {
     if (index >= word_array.length - 1) {
       word.innerHTML = "No more words avaliabe";
       counter.innerHTML = 0;
-      // TODO: fix this in the case someone types stupid amounts of spaces
+      // TODO: fix this in the case someone somehow types more than 200 words
+      // in the span of 30 seconds
     }
-    else if (secondCounter > 30) {
+    else if (secondCounter > allotedTime) {
         word.innerHTML = "Time's up";
     }
     else if (currentValue.charAt(currentValue.length-1) === ' ') {
@@ -60,6 +65,21 @@ function textHandler() {
         input.style.caretColor = "red";
       } 
 }
+
+function sendData() { 
+  $.ajax({ 
+      url: '/process', 
+      type: 'POST', 
+      contentType: 'application/json', 
+      data: JSON.stringify({ 'Correct': correctCharacters, 
+      "Total":totalCharacters}), 
+      success: console.log("Success"), 
+      error: function(error) { 
+        console.log("You got an error");
+          console.log(error); 
+      } 
+  }); 
+} 
 
 
 fetch("https://random-word-api.herokuapp.com/word?number=200")

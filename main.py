@@ -24,7 +24,8 @@ def settings_page():
 def process():
     data = request.get_json()
     wordData = data
-    return None
+    print(wordData)
+    return []
 
 
 
