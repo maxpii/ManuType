@@ -1,7 +1,7 @@
 from flask import Flask, render_template,request
 app = Flask(__name__)
 
-wordData = []
+data = []
 
 @app.route("/")
 @app.route("/home")
@@ -22,11 +22,12 @@ def settings_page():
 
 @app.route("/process",methods=['POST'])
 def process():
+    global data
     data = request.get_json()
-    wordData = data
-    print(wordData)
+    print(data,calculateSpeed(data))
     return []
 
-
+def calculateSpeed(data):
+    return None
 
 app.run(debug=True)

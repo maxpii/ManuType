@@ -63,7 +63,7 @@ function sendData() {
       type: 'POST', 
       contentType: 'application/json', 
       data: JSON.stringify({ 'Correct': correctCharacters, 
-      "Total":totalCharacters}), 
+      "Total":totalCharacters,"Time":secondCounter}), 
       success: console.log("Success"), 
       error: function(error) { 
         console.log("You got an error");
