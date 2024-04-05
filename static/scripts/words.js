@@ -11,7 +11,7 @@ const interval = setInterval(incrementSeconds,1000);
 let flag = false;
 
 function incrementSeconds() {
-  if (index >= word_array.length - 1) {
+  if (index >= word_array.length) {
     clearInterval(interval);
   }
   else {
@@ -34,11 +34,12 @@ function textHandler() {
     var currentValue = input.value;
     input.style.color = "rgb(10, 255, 47)";
     input.style.caretColor = "rgb(10, 255, 47)";
-    if (index >= word_array.length - 1) {
+    if (index >= word_array.length) {
       word.innerHTML = "You finished 25 words";
       counter.innerHTML = 0;
       sendData();
       input.removeAttribute("onkeyup");
+      window.location.href = "http://127.0.0.1:5000/results";
     }
     else if (currentValue.charAt(currentValue.length-1) === ' ') {
       input.value = "";

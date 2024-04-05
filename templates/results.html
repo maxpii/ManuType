@@ -6,6 +6,12 @@
     <title>Results</title>
 </head>
 <body>
-    
+    <h1>Hello World</h1>
+    <ul>
+        {% for item in data %}
+            <li>{{item.Speed}}</li>
+            <li>{{item.Accuracy}}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
