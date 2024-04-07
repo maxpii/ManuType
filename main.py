@@ -32,6 +32,8 @@ def calculateSpeed(data):
     return round(60/data["Time"] * data["Correct"]/5)
 
 def calculateAccuracy(data):
+    if data["Total"] == 0:
+        return 0
     return round(data["Correct"]/data["Total"])
 
 
