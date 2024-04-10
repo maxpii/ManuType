@@ -1,6 +1,6 @@
 from flask import Flask, render_template,request
 app = Flask(__name__)
-data = []
+output = []
 
 @app.route("/")
 @app.route("/home")
@@ -21,21 +21,21 @@ def settings_page():
 
 @app.route("/results")
 def results_page():
-    return render_template("results.html",data=[{"Speed": calculateSpeed(data), "Accuracy": calculateAccuracy(data)}])
+    return render_template("results.html",data=[{"Speed": calculateSpeed(output), "Accuracy": calculateAccuracy(output)}])
 
 @app.route("/process",methods=['POST'])
 def process():
-    global data
-    data = request.get_json()
+    global output
+    output = request.get_json()
+    print(output)
     return []
 
 def calculateSpeed(data):
-    return round(60/data["Time"] * data["Correct"]/5)
+    return (60/data["Time"] * data["Correct"]/5)
 
 def calculateAccuracy(data):
     if data["Total"] == 0:
         return 0
-    return round(data["Correct"]/data["Total"])
-
+    return (data["Correct"]/data["Total"])
 
 app.run(debug=True)
