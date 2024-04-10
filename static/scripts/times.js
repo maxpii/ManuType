@@ -17,6 +17,7 @@ function incrementSeconds() {
     word.innerHTML = "Time's up";
     input.removeAttribute("onkeyup");
     clearInterval(interval);
+    window.location.href = "http://127.0.0.1:5000/results";
   }
   else {
     if (flag) {

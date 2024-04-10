@@ -6,12 +6,15 @@
     <title>Results</title>
 </head>
 <body>
-    <h1>Hello World</h1>
-    <ul>
-        {% for item in data %}
-            <li>{{item.Speed}}</li>
-            <li>{{item.Accuracy}}</li>
-        {% endfor %}
-    </ul>
+    <div id="speed">
+        <h1>Speed</h1>
+        <h1>{{data.0.Speed}} WPM</h1>
+
+    </div>
+
+    <div id="accuracy">
+        <h1>Accuracy</h1>
+        <h1>{{data.0.Accuracy * 100}} %</h1>
+    </div>
 </body>
 </html>

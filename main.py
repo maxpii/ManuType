@@ -18,6 +18,7 @@ def words_page():
 @app.route("/settings")
 def settings_page():
     return render_template("settings.html")
+
 @app.route("/results")
 def results_page():
     return render_template("results.html",data=[{"Speed": calculateSpeed(data), "Accuracy": calculateAccuracy(data)}])
