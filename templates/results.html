@@ -7,18 +7,20 @@
     <title>Results</title>
 </head>
 <body>
+
+<div class="bg-gray-500">
 <div class="pt-0 mt-0 pb-40 mb-50 h-screen flex space-x-80 items-center">
-    <div>
+    <div class="border-8 rounded-full mr-10 pr-20">
         <h1 class="mr-10 mb-30 pb-20 ml-40 pl-40 text-8xl text-red-600">Speed</h1>
-        <h1 class="ml-20 pl-80">{{data.0.Speed * 1.0}} WPM</h1>
+        <h1 class="font-mono text-5xl ml-10 pl-80">{{data.0.Speed * 1.0}} WPM</h1>
     </div>
 
-    <div>
+    <div class="border-8 rounded-full">
         <h1 class="mb-30 pb-20 ml-40 pl-30 text-8xl  text-purple-600" >Accuracy</h1>
-        <h1 class="ml-0 pl-80">{{data.0.Accuracy * 100}} %</h1>
+        <h1 class="font-mono ml-20 text-5xl pl-40">{{data.0.Accuracy * 100}} %</h1>
     </div>
-
-</div>    
+</div>  
+</div>  
 <!--
 
     <div class="mt-0 space-x-60 justify-center text-5xl flex">
