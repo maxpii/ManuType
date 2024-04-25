@@ -8,18 +8,24 @@
 </head>
 <body>
 
-<div class="bg-gray-500">
-<div class="pt-0 mt-0 pb-40 mb-50 h-screen flex space-x-80 items-center">
-    <div class="border-8 rounded-full mr-10 pr-20">
-        <h1 class="mr-10 mb-30 pb-20 ml-40 pl-40 text-8xl text-red-600">Speed</h1>
-        <h1 class="font-mono text-5xl ml-10 pl-80">{{data.0.Speed * 1.0}} WPM</h1>
-    </div>
+<div class="h-screen bg-gray-500">
+    <div class="pb-0 mb-0 pt-52 flex space-x-80 items-center">
+        <div class="mb-0 border-8 rounded-full ml-44 mr-20 pr-20">
+            <h1 class="mb-0 mr-10 pb-20 ml-30 pl-40 text-8xl text-red-600">Speed</h1>
+            <h1 class="mb-0 font-mono text-5xl ml-24 pl-20 ">{{data.0.Speed * 1.0}} WPM</h1>
+        </div>
 
-    <div class="border-8 rounded-full">
-        <h1 class="mb-30 pb-20 ml-40 pl-30 text-8xl  text-purple-600" >Accuracy</h1>
-        <h1 class="font-mono ml-20 text-5xl pl-40">{{data.0.Accuracy * 100}} %</h1>
+        <div class="mb-0 border-8 rounded-full pl-30">
+            <h1 class="mb-0 pb-20 pr-20 pl-20 ml-10 text-8xl  text-purple-600" >Accuracy</h1>
+            <h1 class="mb-0 font-mono ml-20 text-5xl pl-40">{{data.0.Accuracy * 100}} %</h1>
+        </div>
+    </div>  
+
+    <div class="mt-52 space-x-96 flex justify-center items-center">
+        <a href="http://127.0.0.1:5000/time"><button class="px-8 py-8 text-5xl bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-full">Time Test</button></a>
+        <a href="http://127.0.0.1:5000/home"><button class="px-8 py-6 text-5xl bg-red-500 hover:bg-red-700 text-white font-bold rounded-full">Home</button></a>
+        <a href="http://127.0.0.1:5000/words"><button class="px-8 py-8 text-5xl bg-green-500 hover:bg-green-700 text-white font-bold rounded-full">Word Test</button></a>
     </div>
-</div>  
 </div>  
 <!--
 

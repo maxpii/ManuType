@@ -31,11 +31,11 @@ def process():
     return []
 
 def calculateSpeed(data):
-    return (60/data["Time"] * data["Correct"]/5)
+    return round(60/data["Time"] * data["Correct"]/5)
 
 def calculateAccuracy(data):
     if data["Total"] == 0:
         return 0
-    return (data["Correct"]/data["Total"])
+    return round(data["Correct"]/data["Total"],2)
 
 app.run(debug=True)
