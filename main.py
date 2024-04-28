@@ -1,4 +1,4 @@
-from flask import Flask, render_template,request
+from flask import Flask, render_template,request, flash, redirect, url_for
 from forms import RegistrationForm, LoginForm
 from flask_sqlalchemy import SQLAlchemy
 
@@ -20,9 +20,14 @@ def time_page():
 def words_page():
     return render_template("words.html")
 
-@app.route("/register")
+@app.route("/register", methods=["GET","POST"])
 def register_page():
     form = RegistrationForm()
+    if form.validate_on_submit():
+        flash(f"Account created for {form.username.data}!")
+        return redirect(url_for("home"))
+    else:
+        flash("Invalid Data")
     return render_template("register.html",form=form)
 
 @app.route("/login")

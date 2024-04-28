@@ -10,9 +10,9 @@
     <h1 id="title">ManuType</h1>
     <p id="info">A minimalistic typing website</p>
 
-    <a href="http://127.0.0.1:5000/time"><button id="time">Time</button></a>
-    <a href="http://127.0.0.1:5000/words"><button id="words">Words</button></a>
-    <a href="http://127.0.0.1:5000/register"><button id="register">Register</button></a>
-    <a href="http://127.0.0.1:5000/login"><button id="login">Register</button></a>
+    <a href="{{url_for('time_page')}}"><button id="time">Time</button></a>
+    <a href="{{url_for('words_page')}}"><button id="words">Words</button></a>
+    <a href="{{url_for('register_page')}}"><button id="register">Register</button></a>
+    <a href="{{url_for('login_page')}}"><button id="login">Login</button></a>
 </body>
 </html>
