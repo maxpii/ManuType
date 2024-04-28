@@ -1,5 +1,10 @@
 from flask import Flask, render_template,request
+from forms import RegistrationForm, LoginForm
+from flask_sqlalchemy import SQLAlchemy
+
+
 app = Flask(__name__)
+app.config["SECRET_KEY"] = "7c9a3daa9593e08a5cd46a6c85e2bdf2"
 output = []
 
 @app.route("/")
@@ -15,9 +20,15 @@ def time_page():
 def words_page():
     return render_template("words.html")
 
-@app.route("/settings")
-def settings_page():
-    return render_template("settings.html")
+@app.route("/register")
+def register_page():
+    form = RegistrationForm()
+    return render_template("register.html",form=form)
+
+@app.route("/login")
+def login_page():
+    form = LoginForm()
+    return render_template("login.html",form=form)
 
 @app.route("/results")
 def results_page():

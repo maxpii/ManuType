@@ -14,7 +14,7 @@ body {
     margin: none;
     padding:none;
 }
-#time, #words, #settings {
+#time, #words, #register {
     width:35vh;
     height:35vh;
     border-radius:40px;
@@ -28,13 +28,13 @@ body {
     margin-left:30vh;
     background-color: rgb(0, 92, 230);
 }
-#words, #settings {
+#words, #register {
     margin-left:200px;
 }
 #words {
     background-color: rgb(180, 216, 245);
 }
 
-#settings {
+#register {
     background-color: rgb(47, 195, 240);
 }
