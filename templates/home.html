@@ -7,6 +7,9 @@
     <title>ManuType</title>
 </head>
 <body>
+    {% for mesg in get_flashed_messages() %}
+      <h1>{{ mesg }}</h1>
+      {% endfor %}
     <h1 id="title">ManuType</h1>
     <p id="info">A minimalistic typing website</p>
 

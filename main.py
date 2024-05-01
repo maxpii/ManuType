@@ -25,9 +25,9 @@ def register_page():
     form = RegistrationForm()
     if form.validate_on_submit():
         flash(f"Account created for {form.username.data}!")
-        return redirect(url_for("home"))
-    else:
-        flash("Invalid Data")
+        return redirect(url_for("home_page"))
+    elif form.is_submitted() and not form.validate():
+        flash("Invalid data")
     return render_template("register.html",form=form)
 
 @app.route("/login")
