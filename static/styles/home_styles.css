@@ -14,22 +14,19 @@ body {
     margin: none;
     padding:none;
 }
-#time, #words, #register {
+#time, #words, #register, #login {
     width:35vh;
     height:35vh;
     border-radius:40px;
     font-family:monospace;
     font-size:30px;
     text-align: center;
-    
+    margin-top:50px;
+    margin-left:100px;
 }
 #time {
-    margin-top:75px;
-    margin-left:30vh;
     background-color: rgb(0, 92, 230);
-}
-#words, #register {
-    margin-left:200px;
+    margin-left:160px;
 }
 #words {
     background-color: rgb(180, 216, 245);
@@ -37,4 +34,7 @@ body {
 
 #register {
     background-color: rgb(47, 195, 240);
+}
+#login {
+    background-color: rgb(7, 85, 253);
 }

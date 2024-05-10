@@ -5,6 +5,10 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "7c9a3daa9593e08a5cd46a6c85e2bdf2"
+app.config["SQLALCHEMY_DATABASE_URL"] = 'sqlite:///site.db'
+
+db = SQLAlchemy(app)
+
 output = []
 
 @app.route("/")
@@ -30,9 +34,15 @@ def register_page():
         flash("Invalid data")
     return render_template("register.html",form=form)
 
-@app.route("/login")
+@app.route("/login", methods=["GET","POST"])
 def login_page():
     form = LoginForm()
+    if form.validate_on_submit():
+        if form.email.data == "admin@blog.com" and form.password.data == "password":
+            flash("You have been logged in")
+            return redirect(url_for("home_page"))
+        else:
+            flash("Login unsuccessful. Please check username and password")
     return render_template("login.html",form=form)
 
 @app.route("/results")
@@ -43,7 +53,6 @@ def results_page():
 def process():
     global output
     output = request.get_json()
-    print(output)
     return []
 
 def calculateSpeed(data):

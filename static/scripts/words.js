@@ -11,7 +11,7 @@ const interval = setInterval(incrementSeconds,1000);
 let flag = false;
 
 function incrementSeconds() {
-  if (index >= word_array.length) {
+  if (index >= word_array.length -1 ) {
     clearInterval(interval);
   }
   else {
@@ -30,11 +30,11 @@ function filter(data) {
 }
 
 function textHandler() {
-  flag = true;
+    flag = true;
     var currentValue = input.value;
     input.style.color = "rgb(10, 255, 47)";
     input.style.caretColor = "rgb(10, 255, 47)";
-    if (index >= word_array.length) {
+    if (index >= word_array.length - 1) {
       word.innerHTML = "You finished 25 words";
       counter.innerHTML = 0;
       sendData();
