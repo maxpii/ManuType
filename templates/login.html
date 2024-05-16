@@ -3,25 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="register.css">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <title>Login</title>
 </head>
-<body> 
-    <div class="invalid">   
+<body class="bg-gray-100">  
         {% for mesg in get_flashed_messages() %}
                 <h1>{{mesg}}</div>
       {% endfor %}
-    </div>
     <div>
-        <form method="POST" action="">
+        <form method="POST" action="" class="px-4 my-32 max-w-3xl mx-auto space-y-6">
             {{ form.hidden_tag() }}
             <div>
-                {{ form.email.label(class="") }}
-                {{ form.email(class="") }}
+                {{ form.email.label(class="font-semibold") }}
+                {{ form.email(class="border border-gray-400 block py-2 px-4 w-full rounded  focus:outline-none focus:border-purple-500 placeholder-gray-400") }}
             </div>
+
             <div>
-                {{ form.password.label(class="") }}
-                {{ form.password(class="") }}
+                {{ form.password.label(class="font-semibold") }}
+                {{ form.password(class="border border-gray-400 block py-2 px-4 w-full rounded  focus:outline-none focus:border-purple-500 placeholder-gray-400") }}
             </div>
 
             <div>
@@ -30,15 +29,16 @@
             </div>
 
             <div>
-                {{ form.submit(class="") }}
+                {{ form.submit(class="border border-gray-400 block py-2 px-4 w-full rounded focus:outline-none focus:border-purple-500 ") }}
             </div>
             
             <div>
-                <a href="#">Forgot Password</a>
+                <a href="#" class="text-blue-700 rounded-full">Forgot Password</a>
             </div>
+
             <div>
                 Need an account? 
-                <a href="{{url_for('register_page')}}"><button>Click Here!</button></a>
+                <a href="{{url_for('register_page')}}"><button class="text-blue-700 rounded-full">Click Here!</button></a>
             </div>
         </form>
     </div>

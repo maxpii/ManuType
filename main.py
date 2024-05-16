@@ -51,8 +51,8 @@ def login_page():
         if form.email.data == "admin@blog.com" and form.password.data == "password":
             flash("You have been logged in")
             return redirect(url_for("home_page"))
-        else:
-            flash("Login unsuccessful. Please check username and password")
+    elif form.is_submitted() and not form.validate():
+        flash("Login unsuccessful. Please check username and password")
     return render_template("login.html",form=form)
 
 @app.route("/results")

@@ -29,7 +29,9 @@ function incrementSeconds() {
 
 function filter(data) {
     for (let i = 0; i < data.length; i++) {
-        word_array.push(data[i]);
+        if (data[i].length < 9) {
+          word_array.push(data[i]);
+        }
       }
     word.innerHTML = word_array[0];
 }
