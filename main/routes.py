@@ -1,23 +1,8 @@
-from flask import Flask, render_template,request, flash, redirect, url_for
-from forms import RegistrationForm, LoginForm
-from flask_sqlalchemy import SQLAlchemy
+from flask import render_template,request, flash, redirect, url_for
+from main import app
+from main.forms import RegistrationForm, LoginForm
+from main.models import User
 
-
-app = Flask(__name__)
-app.config["SECRET_KEY"] = "7c9a3daa9593e08a5cd46a6c85e2bdf2"
-app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///site.db'
-
-db = SQLAlchemy(app)
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), unique=True, nullable=False) #string of 20 characters, and cannot be duplicated
-    email = db.Column(db.String(120), unique=True, nullable=False) #string of 20 characters, and cannot be duplicated
-    image_file = db.Column(db.String(20),nullable=False, default='default.jpg') #string of 20 characters, and cannot be duplicated
-    password = db.Column(db.String(60), nullable=False)
-    #TODO:create columns for typing-specific data
-
-    def __repr__(self):
-        return f"User('{self.username}','{self.email}','{self.image_file}')"
 
 output = []
 
@@ -72,5 +57,3 @@ def calculateAccuracy(data):
     if data["Total"] == 0:
         return 0
     return round(data["Correct"]/data["Total"],2)
-
-app.run(debug=True)
