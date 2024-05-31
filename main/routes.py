@@ -1,5 +1,5 @@
 from flask import render_template,request, flash, redirect, url_for
-from main import app
+from main import app,db,bcrypt
 from main.forms import RegistrationForm, LoginForm
 from main.models import User
 
@@ -22,9 +22,15 @@ def words_page():
 @app.route("/register", methods=["GET","POST"])
 def register_page():
     form = RegistrationForm()
-    if form.validate_on_submit():
-        flash(f"Account created for {form.username.data}!")
-        return redirect(url_for("home_page"))
+    if form.is_submitted() and form.validate():
+
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+        db.session.add(user)
+        db.session.commit()
+
+        flash(f"Account created for {form.username.data}! You can now login")
+        return redirect(url_for("login_page"))
     elif form.is_submitted() and not form.validate():
         flash("Invalid data")
     return render_template("register.html",form=form)
