@@ -16,9 +16,14 @@ class RegistrationForm(FlaskForm): # inheritance
     def validate_username(self, username): 
         user = User.query.filter_by(username=username.data).first()
         if user:
-            raise ValidationError("That username is taken. Please choose a dfiferent one.")
-        else:
-            return True
+            return False
+        return True        
+    
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user:
+            return False
+        return True
 
 class LoginForm(FlaskForm): # inheritance
     email = StringField("Email",validators=[DataRequired(),Email()])
@@ -26,11 +31,5 @@ class LoginForm(FlaskForm): # inheritance
     remember = BooleanField("Remember Me")
     submit = SubmitField("Login")
 
-    def validate_email(self, email): 
-        user = User.query.filter_by(email=email.data).first()
-        if user:
-            raise ValidationError("Email does not exist")
-        else:
-            return True
 
 

@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <title>Register</title>
 </head>
 
 <body class="bg-gray-100" > 
-    <div id="formy">
     <div class="invalid">   
         {% for mesg in get_flashed_messages() %}
-                <h1>{{mesg}}
+                <h1>{{mesg}}</h1>
       {% endfor %}
     </div>
 
@@ -42,6 +41,7 @@
             </div>
         </form>
     </div>
+
     <div>
         <div class="px-4 my-32 max-w-3xl mx-auto space-y-6">
             Already have an account? 

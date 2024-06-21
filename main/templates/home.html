@@ -13,9 +13,16 @@
     <h1 id="title">ManuType</h1>
     <p id="info">A minimalistic typing website</p>
 
+
     <a href="{{url_for('time_page')}}"><button id="time">Time</button></a>
     <a href="{{url_for('words_page')}}"><button id="words">Words</button></a>
+
+    {% if current_user.is_authenticated %}
+    <a href="{{url_for('logout')}}"><button id="register">logout</button></a>
+    <a href="{{url_for('account')}}"><button id="login">account</button></a>
+    {% else %}
     <a href="{{url_for('register_page')}}"><button id="register">Register</button></a>
     <a href="{{url_for('login_page')}}"><button id="login">Login</button></a>
+    {% endif %}
 </body>
 </html>
