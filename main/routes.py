@@ -1,7 +1,7 @@
 from flask import render_template,request, flash, redirect, url_for
 from main import app,db,bcrypt
 from main.forms import RegistrationForm, LoginForm
-from main.models import User
+from main.models import User,Typing
 from flask_login import login_user, current_user,logout_user, login_required
 
 
@@ -19,6 +19,23 @@ def time_page():
 @app.route("/words")
 def words_page():
     return render_template("words.html")
+
+@app.route("/login", methods=["GET","POST"])
+def login_page():
+    form = LoginForm()
+    if form.is_submitted() and form.validate():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user,remember=form.remember.data)
+            flash("Login sucessful!")
+            return redirect(url_for("home_page"))
+    elif form.is_submitted() and not form.validate():
+        flash("Login unsuccessful. Please check username and password")
+        
+    return render_template("login.html",form=form)
+
+
+
 
 @app.route("/register", methods=["GET","POST"])
 def register_page():
@@ -43,22 +60,13 @@ def register_page():
             flash("Invalid data.")
     return render_template("register.html",form=form)
 
-@app.route("/login", methods=["GET","POST"])
-def login_page():
-    form = LoginForm()
-    if form.is_submitted() and form.validate():
-        user = User.query.filter_by(email=form.email.data).first()
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user,remember=form.remember.data)
-            flash("Login sucessful!")
-            return redirect(url_for("home_page"))
-    elif form.is_submitted() and not form.validate():
-        flash("Login unsuccessful. Please check username and password")
-        
-    return render_template("login.html",form=form)
-
 @app.route("/results")
 def results_page():
+    #if (current_user.is_authenticated):
+        #newTyping = Typing(calculateSpeed(output),calculateAccuracy(output),current_user.total)
+        #db.session.add(newTyping)
+        #db.session.commit()
+    flash("Adding typing stats to your profile!")
     return render_template("results.html",data=[{"Speed": calculateSpeed(output), "Accuracy": calculateAccuracy(output)}])
 
 @app.route("/logout")
@@ -80,9 +88,9 @@ def process():
     return []
 
 def calculateSpeed(data):
-    return round(60/data["Time"] * data["Correct"]/5)
+    return int(round(60/data["Time"] * data["Correct"]/5))
 
 def calculateAccuracy(data):
     if data["Total"] == 0:
         return 0
-    return round(data["Correct"]/data["Total"],2)
+    return int(round(data["Correct"]/data["Total"]))

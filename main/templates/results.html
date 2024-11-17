@@ -8,6 +8,9 @@
 </head>
 <body>
 
+    {% for mesg in get_flashed_messages() %}
+        <h1 class="text-white font-mono bg-black">{{ mesg }}</h1>
+    {% endfor %}
 <div class="h-screen bg-black">
     <div class="pb-0 mb-0 pt-52 flex space-x-80 items-center">
         <div class="mb-0 ml-44 mr-20 pr-20">
