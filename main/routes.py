@@ -3,9 +3,11 @@ from main import app,db,bcrypt
 from main.forms import RegistrationForm, LoginForm
 from main.models import User,Typing
 from flask_login import login_user, current_user,logout_user, login_required
-
+import email_validator
 
 output = []
+speeds = []
+accuracies = []
 
 @app.route("/")
 @app.route("/home")
@@ -62,12 +64,16 @@ def register_page():
 
 @app.route("/results")
 def results_page():
-    #if (current_user.is_authenticated):
-        #newTyping = Typing(calculateSpeed(output),calculateAccuracy(output),current_user.total)
-        #db.session.add(newTyping)
-        #db.session.commit()
-    flash("Adding typing stats to your profile!")
-    return render_template("results.html",data=[{"Speed": calculateSpeed(output), "Accuracy": calculateAccuracy(output)}])
+    currSpeed = calculateSpeed(output)
+    currAccuracy = calculateAccuracy(output)
+    if (current_user.is_authenticated):
+        newTyping = Typing(speed=currSpeed,accuracy=currAccuracy,id=current_user.id)
+        db.session.add(newTyping)
+        db.session.commit()
+    #flash("Adding typing stats to your profile!")
+    speeds.append(currSpeed)
+    accuracies.append(currAccuracy)
+    return render_template("results.html",data=[{"Speed": currSpeed, "Accuracy": currAccuracy}])
 
 @app.route("/logout")
 def logout():
@@ -77,7 +83,7 @@ def logout():
 @app.route("/account")
 @login_required
 def account():
-    return render_template("account.html", title="Account")
+    return render_template("account.html", title="Account", average_speed = round(sum(speeds)/len(speeds),2), average_accuracy = round(sum(accuracies)/len(accuracies),2))
 
 
 
@@ -87,10 +93,23 @@ def process():
     output = request.get_json()
     return []
 
-def calculateSpeed(data):
-    return int(round(60/data["Time"] * data["Correct"]/5))
-
-def calculateAccuracy(data):
-    if data["Total"] == 0:
+def calculateSpeed(data : dict):
+    print(data)
+    if len(data) == 0:
+        pass
+    try:
+        return int(round(60/data["Time"] * data["Correct"]/5))
+    except:
         return 0
-    return int(round(data["Correct"]/data["Total"]))
+
+def calculateAccuracy(data : dict):
+    print(data)
+    if len(data) == 0:
+        pass
+
+    #if data["Total"] == 0:
+     #   return 0
+    try:
+        return int(round(data["Correct"]/data["Total"]))
+    except:
+        return 0

@@ -14,13 +14,15 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(60), nullable=False)
     typing = db.relationship("Typing",backref="player",lazy=True)
 
+    def __repr__(self):
+        return f"User('{self.username}','{self.email}','{self.id}')"
+
 class Typing(db.Model,UserMixin):
     id = db.Column(db.Integer,primary_key=True)
     speed = db.Column(db.Integer,nullable=False)
     accuracy = db.Column(db.Integer,nullable=False)
-    totalTests = db.Column(db.Integer,nullable=False)
     user_id = db.Column(db.Integer,db.ForeignKey("user.id"),nullable=False)
     #TODO:create columns for typing-specific data
 
     def __repr__(self):
-        return f"User('{self.username}','{self.email}','{self.image_file}')"
+        return f"User('{self.speed}','{self.accuracy}','{self.user_id}')"

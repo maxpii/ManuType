@@ -2,11 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
 </head>
 <body>
-    <h1>{{current_user.username}}</h1>
-    <h1>{{current_user.email}}</h1>
+    <h1>Account Information</h1>
+    <h1>Username: {{current_user.username}}</h1>
+    <h1>Email: {{current_user.email}}</h1>
+    <h1>Average speed: {{average_speed}}</h1>
+    <h1>Average accuracy: {{average_accuracy}}</h1>
 </body>
 </html>
