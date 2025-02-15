@@ -38,34 +38,56 @@ function filter(data) {
 
 function textHandler() {
   console.log(totalCharacters + " " + correctCharacters);
-    flag = true;
-    var currentValue = input.value;
-    input.style.color = "rgb(10, 255, 47)";
-    input.style.caretColor = "rgb(10, 255, 47)";
-    if (index >= word_array.length - 2) {
-      word.innerHTML = "You finished " + totalWords + " words";
-      counter.innerHTML = 0;
-      sendData();
-      input.removeAttribute("onkeyup");
-      window.location.href = "http://127.0.0.1:5000/results";
-    }
-    else if (currentValue.charAt(currentValue.length-1) === ' ') {
-      input.value = "";
-      totalCharacters += currentValue.length - 1; 
-      if (currentValue.substring(0,currentValue.length  - 1) === word_array[index]) {
-        correctCharacters += currentValue.length - 1;
-      }
-      index ++;
-      word.innerHTML = word_array[index];
-      counter.innerHTML = totalWords - index;
-    }
-    else if (currentValue.length > word_array[index].length ||
-            word_array[index].substring(0,currentValue.length) !== currentValue
-      ) {
-        input.style.color = "red";
-        input.style.caretColor = "red";
-      } 
+  flag = true;
+  var currentValue = input.value;
+  setInputStyle("rgb(10, 255, 47)");
+
+  if (isTestComplete()) {
+    handleTestCompletion();
+  } else if (isSpaceCharacter(currentValue)) {
+    handleSpaceCharacter(currentValue);
+  } else if (isIncorrectInput(currentValue)) {
+    setInputStyle("red");
+  }
 }
+
+function setInputStyle(color) {
+  input.style.color = color;
+  input.style.caretColor = color;
+}
+
+function isTestComplete() {
+  return index >= word_array.length - 2;
+}
+
+function handleTestCompletion() {
+  word.innerHTML = "You finished " + totalWords + " words";
+  counter.innerHTML = 0;
+  sendData();
+  input.removeAttribute("onkeyup");
+  window.location.href = "http://127.0.0.1:5000/results";
+}
+
+function isSpaceCharacter(currentValue) {
+  return currentValue.charAt(currentValue.length - 1) === ' ';
+}
+
+function handleSpaceCharacter(currentValue) {
+  input.value = "";
+  totalCharacters += currentValue.length - 1;
+  if (currentValue.substring(0, currentValue.length - 1) === word_array[index]) {
+    correctCharacters += currentValue.length - 1;
+  }
+  index++;
+  word.innerHTML = word_array[index];
+  counter.innerHTML = totalWords - index;
+}
+
+function isIncorrectInput(currentValue) {
+  return currentValue.length > word_array[index].length ||
+    word_array[index].substring(0, currentValue.length) !== currentValue;
+}
+
 function sendData() { 
   $.ajax({ 
       url: '/process', 

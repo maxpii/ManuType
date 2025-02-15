@@ -1,7 +1,7 @@
 from flask import render_template,request, flash, redirect, url_for
 from main import app,db,bcrypt
 from main.forms import RegistrationForm, LoginForm
-from main.models import User
+from main.models import User, OneTest
 from flask_login import login_user, current_user,logout_user, login_required
 
 
@@ -59,6 +59,13 @@ def login_page():
 
 @app.route("/results")
 def results_page():
+    typing_data = OneTest(user_id=current_user.id, wpm=calculateSpeed(output), accuracy=calculateAccuracy(output))
+
+    if current_user.is_authenticated:
+        current_user.increment_total_tests()
+        current_user.allTests.append(typing_data)
+        db.session.commit()
+
     return render_template("results.html",data=[{"Speed": calculateSpeed(output), "Accuracy": calculateAccuracy(output)}])
 
 @app.route("/logout")

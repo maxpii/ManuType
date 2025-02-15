@@ -4,9 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
+<!-- Add Tailwind CSS CDN link if not already included -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>{{current_user.username}}</h1>
-    <h1>{{current_user.email}}</h1>
+<body class="bg-black">
+        <ul class="ml-10 mt-10 text-lg text-white" id="account-info">
+            <li class="mb-10">Email: {{ current_user.email }}</li>
+            <li class="mb-10">Username: {{ current_user.username }}</li>
+            <li class="mb-10">Average Speed: {{current_user.average_speed()}}</li>
+            <li class="mb-10">Average Accuracy: {{current_user.average_accuracy()}}</li>
+            <li class="mb-10">Number of Tests: {{current_user.total_tests}}</li>
+            <li class="mb-10">Highest accuracy: {{current_user.max_accuracy()}}</li>
+            <li class="mb-10">Highest speed: {{current_user.max_speed()}}</li>
+        </ul>
+
+        <div class="border-l-2 border-white h-full mx-8"></div>
+        
+        <div class="ml-40">
+        <a href="{{url_for('logout')}}"><button class="bg-blue-400 text-white font-bold p-2 rounded-lg ml-40 space-x-40">logout</button></a>
+        </div>
+
 </body>
 </html>
